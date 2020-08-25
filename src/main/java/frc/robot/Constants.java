@@ -16,7 +16,19 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    //NEO CAN IDs
+  //Xbox Button Ports
+  public static final int A = 1;
+	public static final int B = 2;
+	public static final int X = 3;
+	public static final int Y = 4;
+	public static final int LB = 5;
+	public static final int RB = 6;
+	public static final int BACK = 7;
+	public static final int START = 8;
+	public static final int LEFT_STICK_BUTTON = 9;
+	public static final int RIGHT_STICK_BUTTON = 10;
+
+  //NEO CAN IDs
     //shooter
   public static int CAN_L_SHOOTER_MOTOR = 8;
   public static int CAN_R_SHOOTER_MOTOR = 9;
