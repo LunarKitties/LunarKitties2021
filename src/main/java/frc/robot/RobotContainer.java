@@ -9,6 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import frc.robot.commands.DriveWithController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -28,10 +30,12 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain mDrivetrain = new Drivetrain();
 
-
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
+
+  public XboxController xbox1 = new XboxController(0);
+  public XboxController xbox2 = new XboxController(1);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -40,8 +44,14 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    XboxController xbox1 = new XboxController(0);
-    XboxController xbox2 = new XboxController(1);
+    mDrivetrain.setDefaultCommand(
+      new DriveWithController(
+        mDrivetrain,
+        () -> xbox1.getTriggerAxis(Hand.kLeft),
+        () -> xbox1.getTriggerAxis(Hand.kRight),
+        () -> xbox1.getX(Hand.kRight)
+      )
+    );
   }
 
   /**
@@ -64,4 +74,7 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
+
+
+
 }
