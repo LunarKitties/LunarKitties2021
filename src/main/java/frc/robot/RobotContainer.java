@@ -10,8 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.DriveWithController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ShiftHigh;
+import frc.robot.commands.ShiftLow;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -61,7 +64,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-   
+   new JoystickButton(xbox1, Button.kBumperRight.value).whenPressed(new ShiftHigh(mDrivetrain));
+
+   new JoystickButton(xbox1, Button.kBumperLeft.value).whenPressed(new ShiftLow(mDrivetrain));
+
   }
 
 
