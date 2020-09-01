@@ -15,4 +15,9 @@ public class ShiftLow extends CommandBase {
     public void initialize(){
         mDrivetrain.shiftLow();
     }
+
+    @Override
+    public boolean isFinished(){
+        return true;
+    }
 }

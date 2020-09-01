@@ -15,4 +15,9 @@ public class ShiftHigh extends CommandBase {
     public void initialize(){
         mDrivetrain.shiftHigh();
     }
+
+    @Override
+    public boolean isFinished(){
+        return true;
+    }
 }
