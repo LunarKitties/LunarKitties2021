@@ -13,14 +13,16 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.DriveWithController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.ShiftHigh;
-import frc.robot.commands.ShiftLow;
+import frc.robot.commands.LiftBrakeOff;
+import frc.robot.commands.LiftBrakeOn;
+import frc.robot.commands.OperateLift;
+import frc.robot.commands.WheelsShiftHigh;
+import frc.robot.commands.WheelsShiftLow;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Lift;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import frc.robot.Constants;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -32,6 +34,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain mDrivetrain = new Drivetrain();
+  private final Lift mLift = new Lift();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -55,6 +58,14 @@ public class RobotContainer {
         () -> xbox1.getX(Hand.kRight)
       )
     );
+    mLift.setDefaultCommand(
+      new OperateLift(
+        mLift, 
+        () -> xbox1.getY(Hand.kLeft), 
+        () -> xbox1.getX(Hand.kRight)
+      )
+    );
+
   }
 
   /**
@@ -64,10 +75,12 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-   new JoystickButton(xbox1, Button.kBumperRight.value).whenPressed(new ShiftHigh(mDrivetrain));
-
-   new JoystickButton(xbox1, Button.kBumperLeft.value).whenPressed(new ShiftLow(mDrivetrain));
-
+      //Shifting to low or high gear
+   new JoystickButton(xbox1, Button.kBumperRight.value).whenPressed(new WheelsShiftHigh(mDrivetrain));
+   new JoystickButton(xbox1, Button.kBumperLeft.value).whenPressed(new WheelsShiftLow(mDrivetrain));
+      //Locking the lift in its current position
+   new JoystickButton(xbox1, Button.kY.value).whenPressed(new LiftBrakeOn(mLift));
+   new JoystickButton(xbox1, Button.kX.value).whenPressed(new LiftBrakeOff(mLift));
   }
 
 
