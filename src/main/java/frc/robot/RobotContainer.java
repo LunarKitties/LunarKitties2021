@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -43,6 +45,9 @@ public class RobotContainer {
   public XboxController xbox1 = new XboxController(0);
   public XboxController xbox2 = new XboxController(1);
 
+  //not sure if this should go here. Might need to create new subsystem.
+  public AHRS gyro = new AHRS();
+
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -62,7 +67,7 @@ public class RobotContainer {
       new OperateLift(
         mLift, 
         () -> xbox1.getY(Hand.kLeft), 
-        () -> xbox1.getX(Hand.kRight)
+        () -> xbox1.getX(Hand.kLeft)
       )
     );
 
