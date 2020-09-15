@@ -17,9 +17,14 @@ import frc.robot.commands.DriveWithController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LiftBrakeOff;
 import frc.robot.commands.LiftBrakeOn;
+import frc.robot.commands.LowerAccum;
 import frc.robot.commands.OperateLift;
+import frc.robot.commands.RaiseAccum;
+import frc.robot.commands.RunIntake;
 import frc.robot.commands.WheelsShiftHigh;
 import frc.robot.commands.WheelsShiftLow;
+import frc.robot.subsystems.AccumulatorIntake;
+import frc.robot.subsystems.AccumulatorJoint;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Lift;
@@ -37,6 +42,8 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain mDrivetrain = new Drivetrain();
   private final Lift mLift = new Lift();
+  private final AccumulatorIntake mAccumulatorIntake = new AccumulatorIntake();
+  private final AccumulatorJoint mAccumulatorJoint = new AccumulatorJoint();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -71,6 +78,14 @@ public class RobotContainer {
         () -> xbox1.getX(Hand.kLeft)
       )
     );
+    mAccumulatorIntake.setDefaultCommand(
+      new RunIntake(
+        mAccumulatorIntake,
+        () -> xbox2.getTriggerAxis(Hand.kRight),
+        () -> xbox2.getTriggerAxis(Hand.kLeft)
+      )
+    );
+    
 
   }
 
@@ -87,6 +102,9 @@ public class RobotContainer {
       //Locking the lift in its current position
    new JoystickButton(xbox1, Button.kY.value).whenPressed(new LiftBrakeOn(mLift));
    new JoystickButton(xbox1, Button.kX.value).whenPressed(new LiftBrakeOff(mLift));
+      //Lowering/Raising Accumulator
+   new JoystickButton(xbox2, Button.kY.value).whenPressed(new RaiseAccum(mAccumulatorJoint));
+   new JoystickButton(xbox2, Button.kX.value).whenPressed(new LowerAccum(mAccumulatorJoint));
   }
 
 
