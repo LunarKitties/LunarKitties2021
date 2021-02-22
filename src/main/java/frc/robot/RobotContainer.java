@@ -53,7 +53,7 @@ public class RobotContainer {
   public XboxController xbox2 = new XboxController(1);
 
   //not sure if this should go here. Might need to create new subsystem.
-  //TODO: Create new subsystem foe NavX Gyro
+  //TODO: Create new subsystem foe NavX Gyro?
   public AHRS gyro = new AHRS();
 
   /**
