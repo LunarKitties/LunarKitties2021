@@ -17,7 +17,7 @@ public class AccumulatorJoint extends SubsystemBase{
 
     public AccumulatorJoint()
     {
-
+        //Liz and Ethan are fun people
     }
 
   
