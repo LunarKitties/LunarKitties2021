@@ -24,8 +24,9 @@ public class Indexor extends SubsystemBase {
     TalonSRX preShootMotor = new TalonSRX(Constants.CAN_TALON_PRE_SHOOT_MOTOR);
     Encoder indexEnc = new Encoder(Constants.DIO_INDEX_A_ENCODER, Constants.DIO_INDEX_B_ENCODER);
 
-    private final DigitalInput ballReadyRight = new DigitalInput(Constants.DIO_INDEX_RIGHT_BALL_SWITCH);
-    private final DigitalInput ballReadyLeft = new DigitalInput(Constants.DIO_INDEX_LEFT_BALL_SWITCH);
+        //Replaced touch sensors with color sensor. Left code for future referencing. 
+    //private final DigitalInput ballReadyRight = new DigitalInput(Constants.DIO_INDEX_RIGHT_BALL_SWITCH);
+    //private final DigitalInput ballReadyLeft = new DigitalInput(Constants.DIO_INDEX_LEFT_BALL_SWITCH);
 
     private final I2C.Port i2cPort = I2C.Port.kOnboard;
 
@@ -35,9 +36,11 @@ public class Indexor extends SubsystemBase {
   {
   }
   
+  /*
   public boolean ballHere(){
     return ballReadyRight.get() || ballReadyLeft.get();
   }
+  */
 
   public void runBelts(double speed){
     indexMotor.set(ControlMode.PercentOutput, speed);
