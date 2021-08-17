@@ -53,5 +53,4 @@ public class OperateIndexor extends CommandBase{
             mIndexor.unShoot();
           }
     }
-    
 }
