@@ -18,6 +18,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LiftBrakeOff;
 import frc.robot.commands.LiftBrakeOn;
 import frc.robot.commands.LowerAccum;
+import frc.robot.commands.OperateIndexor;
 import frc.robot.commands.OperateLift;
 import frc.robot.commands.RaiseAccum;
 import frc.robot.commands.RunIntake;
@@ -28,6 +29,7 @@ import frc.robot.subsystems.AccumulatorJoint;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.Indexor;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -44,6 +46,7 @@ public class RobotContainer {
   private final Lift mLift = new Lift();
   private final AccumulatorIntake mAccumulatorIntake = new AccumulatorIntake();
   private final AccumulatorJoint mAccumulatorJoint = new AccumulatorJoint();
+  private final Indexor mIndexor = new Indexor();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -85,7 +88,12 @@ public class RobotContainer {
         () -> xbox2.getTriggerAxis(Hand.kLeft)
       )
     );
-    
+    mIndexor.setDefaultCommand(
+      new OperateIndexor(
+        mIndexor, 
+        () -> xbox2.getAButton(), 
+        () -> xbox2.getBButton())
+    );
 
   }
 
