@@ -23,7 +23,7 @@ public class OperateShooter extends CommandBase {
   public void execute(){
     //double spdFromDist = Robot.mShooter.getSpeed();
     
-    if (mdpad.getAsDouble() == 0){ //DPAD UP
+    if (mdpad.getAsDouble() < 0){ //DPAD UP
       //do nothing
     }else if (mdpad.getAsDouble() < 45.0 || mdpad.getAsDouble() > 315){ //DPAD UP
       mShooter.setSpeed(-5000);
