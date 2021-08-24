@@ -72,6 +72,7 @@ public class Shooter extends SubsystemBase {
     m_pidController.setReference(rate, ControlType.kVelocity);
   }
 
+    /*
   public double getDist(){
     double a2 = Robot.mLimelight.crosshairY();
     double h1, h2, a1;
@@ -96,16 +97,16 @@ public class Shooter extends SubsystemBase {
 
     return mappedSlope * getDist() + mappedIntercept;
   }
-  
+  */
   public void stop(){
     shootMotor.stopMotor();
   }
-
+  
   public void log(){
     SmartDashboard.putNumber("Shooter Angular Velocity", shootEncoder.getVelocity());
     SmartDashboard.putNumber("follower pwr", followMotor.getOutputCurrent());
     SmartDashboard.putNumber("master pwr", shootMotor.getOutputCurrent());
-    SmartDashboard.putNumber("Dist from goal", getDist());
-    SmartDashboard.putNumber("Intended Speed", getSpeed());
+    //SmartDashboard.putNumber("Dist from goal", getDist());
+    //SmartDashboard.putNumber("Intended Speed", getSpeed());
   }
 }
