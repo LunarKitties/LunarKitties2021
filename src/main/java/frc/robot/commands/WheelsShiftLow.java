@@ -17,7 +17,7 @@ public class WheelsShiftLow extends CommandBase {
     @Override
     public void initialize(){
         mDrivetrain.shiftLow();
-        mLEDs.setColor(mLEDs.LAWN_GREEN);
+        mLEDs.setColor(mLEDs.RAINBOW_FOREST);
     }
 
     @Override
