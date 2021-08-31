@@ -11,6 +11,7 @@ public class LEDs extends SubsystemBase {
 Spark ledDriver = new Spark(Constants.PWM_BLINKIN);
 
 public static final double RAINBOW = -0.99;
+public static final double RAINBOW_OCEAN = -0.95;
 public static final double STROBE_GOLD = -0.07;
 public static final double STROBE_BLUE = -0.09;
 public static final double ORANGE = 0.65;
