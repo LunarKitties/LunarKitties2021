@@ -34,5 +34,7 @@ public class ManualOperateTurret extends CommandBase {
       speed = -0.7;
     }
     mTurret.run(speed);
+
+    mTurret.log();
   }
 }
