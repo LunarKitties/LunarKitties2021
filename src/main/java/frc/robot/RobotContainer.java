@@ -52,7 +52,7 @@ public class RobotContainer {
   private final AccumulatorJoint mAccumulatorJoint = new AccumulatorJoint();
   private final Indexor mIndexor = new Indexor();
   private final Shooter mShooter = new Shooter();
-  private final Turret mTurret = new Turret();
+  Turret mTurret = new Turret();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
