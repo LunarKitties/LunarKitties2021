@@ -103,7 +103,7 @@ public class RobotContainer {
    new JoystickButton(xbox1, Button.kBumperRight.value).whenPressed(new WheelsShiftHigh(mDrivetrain, mLEDs));
    new JoystickButton(xbox1, Button.kBumperLeft.value).whenPressed(new WheelsShiftLow(mDrivetrain, mLEDs));
       //Locking the lift in its current position
-   new JoystickButton(xbox1, Button.kY.value).whenPressed(new LiftBrakeOn(mLift));
+   new JoystickButton(xbox1, Button.kY.value).whenPressed(new LiftBrakeOn(mLift, mLEDs));
    new JoystickButton(xbox1, Button.kX.value).whenPressed(new LiftBrakeOff(mLift));
       //Lowering/Raising Accumulator
    new JoystickButton(xbox2, Button.kY.value).whenPressed(new RaiseAccum(mAccumulatorJoint));
