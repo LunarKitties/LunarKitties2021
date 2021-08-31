@@ -23,6 +23,7 @@ public class ManualOperateTurret extends CommandBase {
     public ManualOperateTurret(Turret _Turret, DoubleSupplier _rightStickX2) {
       mTurret = _Turret;
       rightStickX2 = _rightStickX2;
+      addRequirements(mTurret);
     }
 
     @Override
@@ -35,6 +36,6 @@ public class ManualOperateTurret extends CommandBase {
     }
     mTurret.run(speed);
 
-    mTurret.log();
+    mTurret.log(speed);
   }
 }

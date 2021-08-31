@@ -36,8 +36,9 @@ public class Turret extends SubsystemBase{
     turretMotor.set(ControlMode.PercentOutput, 0);
   }
 
-  public void log(){
+  public void log(double speed){
     SmartDashboard.putNumber("Turret Encoder", currEncode());
     SmartDashboard.putNumber("Turret Motor Power", turretMotor.getMotorOutputPercent());
+    SmartDashboard.putNumber("Controller reading", speed);
   }
 }
