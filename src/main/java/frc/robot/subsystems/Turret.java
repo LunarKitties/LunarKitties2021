@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Turret extends SubsystemBase{
     TalonSRX turretMotor = new TalonSRX(Constants.CAN_TALON_TURRET_MOTOR);
 
-    Encoder turretEnc = new Encoder(Constants.DIO_TURRET_A_ENCODER, ConfigMap.DIO_TURRET_B_ENCODER);
+    Encoder turretEnc = new Encoder(Constants.DIO_TURRET_A_ENCODER, Constants.DIO_TURRET_B_ENCODER);
       
     //constructor
   public Turret()
   {
 
   }
-  
+
   public int currEncode(){
     return turretEnc.get();
   }
