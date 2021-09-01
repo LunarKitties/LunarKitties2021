@@ -65,7 +65,7 @@ public class Limelight extends SubsystemBase {
     return withinArea && withinHeight;
   }
 
-  public void LEDsControl(boolean state){
+  public void limelightLEDsControl(boolean state){
     int LEDs; //1 will force off, 3 forces on
     if(state){
       LEDs = 3;
