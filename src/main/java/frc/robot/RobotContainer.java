@@ -21,6 +21,7 @@ import frc.robot.commands.LowerAccum;
 import frc.robot.commands.OperateIndexor;
 import frc.robot.commands.OperateLift;
 import frc.robot.commands.OperateShooter;
+import frc.robot.commands.AutoOperateTurret;
 import frc.robot.commands.ManualOperateTurret;
 import frc.robot.commands.RaiseAccum;
 import frc.robot.commands.RunIntake;
@@ -34,6 +35,8 @@ import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Indexor;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.NavX;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -52,18 +55,14 @@ public class RobotContainer {
   private final AccumulatorJoint mAccumulatorJoint = new AccumulatorJoint();
   private final Indexor mIndexor = new Indexor();
   private final Shooter mShooter = new Shooter();
-  Turret mTurret = new Turret();
+  private final Limelight mLimelight = new Limelight();
+  private final NavX mNavX = new NavX();
+  private final Turret mTurret = new Turret();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-
-
   public XboxController xbox1 = new XboxController(0);
   public XboxController xbox2 = new XboxController(1);
-
-  //not sure if this should go here. Might need to create new subsystem.
-  //TODO: Create new subsystem foe NavX Gyro?
-  public AHRS gyro = new AHRS();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -108,9 +107,10 @@ public class RobotContainer {
     );
 
     mTurret.setDefaultCommand(
-      new ManualOperateTurret(
+      new AutoOperateTurret(
         mTurret,
-        () -> xbox2.getX(Hand.kRight)
+        mLimelight,
+        mNavX
       )
     );
 
@@ -132,6 +132,8 @@ public class RobotContainer {
       //Lowering/Raising Accumulator
    new JoystickButton(xbox2, Button.kY.value).whenPressed(new RaiseAccum(mAccumulatorJoint));
    new JoystickButton(xbox2, Button.kX.value).whenPressed(new LowerAccum(mAccumulatorJoint));
+      //Swapping to ManualOperateTurret
+   new JoystickButton(xbox2, Button.kStickRight.value).whenPressed(new ManualOperateTurret(mTurret, () -> xbox2.getX(Hand.kRight)));
   }
 
 

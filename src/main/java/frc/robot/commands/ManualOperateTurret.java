@@ -1,8 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
-
 import frc.robot.subsystems.Turret;
 import java.util.function.DoubleSupplier;
 
@@ -23,7 +21,6 @@ public class ManualOperateTurret extends CommandBase {
     public ManualOperateTurret(Turret _Turret, DoubleSupplier _rightStickX2) {
       mTurret = _Turret;
       rightStickX2 = _rightStickX2;
-      addRequirements(mTurret);
     }
 
     @Override
