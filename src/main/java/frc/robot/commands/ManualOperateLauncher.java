@@ -1,28 +1,37 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 
+import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Shooter;
 import java.util.function.DoubleSupplier;
 
-public class OperateShooter extends CommandBase {
-  private final Shooter mShooter;
-  private final DoubleSupplier mdpad;
+public class ManualOperateLauncher extends CommandBase {
+    private final Turret mTurret;
+    private final Shooter mShooter;
 
-  public OperateShooter(Shooter subsystem, DoubleSupplier dpad){
-    mShooter = subsystem;
-    mdpad = dpad;
-    addRequirements(mShooter);
-  }
+    private final DoubleSupplier rightStickX2;
+    private final DoubleSupplier mdpad;
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
+    double speed;
+
+    public ManualOperateLauncher(Turret _Turret, Shooter _Shooter, DoubleSupplier _rightStickX2, DoubleSupplier _dpad) {
+      mTurret = _Turret;
+      mShooter = _Shooter;
+      rightStickX2 = _rightStickX2;
+      mdpad = _dpad;
+    }
+
+    @Override
   public void execute(){
-    //double spdFromDist = Robot.mShooter.getSpeed();
-    
+    speed = -rightStickX2.getAsDouble();
+    if (speed > 0.7){
+      speed = 0.7;
+    }else if (speed < -0.7){
+      speed = -0.7;
+    }
+    mTurret.run(speed);
+
     if (mdpad.getAsDouble() < 0){ //DPAD UP
       //do nothing
     }else if (mdpad.getAsDouble() < 45.0 || mdpad.getAsDouble() > 315){ //DPAD UP
@@ -34,5 +43,7 @@ public class OperateShooter extends CommandBase {
     } else if (mdpad.getAsDouble() < 315.0 && mdpad.getAsDouble() > 245){//DPAD Left
       mShooter.setSpeed(-3675);
     }
+
+    mTurret.log(speed);
   }
 }

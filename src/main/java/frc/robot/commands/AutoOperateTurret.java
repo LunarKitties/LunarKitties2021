@@ -52,5 +52,8 @@ public class AutoOperateTurret extends CommandBase {
         speed = 0;
       }
     }
+
+    mTurret.run(speed);
+    mTurret.log(speed);
   }
 }

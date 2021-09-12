@@ -14,9 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Encoder;
-/**
- * Configuration and basic commands for the shooter.
- */
+
+import frc.robot.subsystems.Limelight;
 
 public class Shooter extends SubsystemBase {
   // Put methods for controlling this subsystem
@@ -72,9 +71,8 @@ public class Shooter extends SubsystemBase {
     m_pidController.setReference(rate, ControlType.kVelocity);
   }
 
-    /*
-  public double getDist(){
-    double a2 = Robot.mLimelight.crosshairY();
+  public double getDist(Limelight mLimelight){
+    double a2 = mLimelight.crosshairY();
     double h1, h2, a1;
     h1 = 33; //in
     h2 = 98; //in
@@ -86,18 +84,21 @@ public class Shooter extends SubsystemBase {
     return (h2 - h1)/(Math.tan(a1 + a2));
   }
 
-  public double getSpeed(){
+  public double getSpeed(Limelight mLimelight){
+    /*
+    //the following were used to map the slope and intercept for determining shooter speed from distance
     double minDist = 85;
     double maxDist = 310;
     double minSpeed = -3675;
     double maxSpeed = -5700;
+    */
 
     double mappedSlope = -9.01;
     double mappedIntercept = -2907.565;
 
-    return mappedSlope * getDist() + mappedIntercept;
+    return mappedSlope * getDist(mLimelight) + mappedIntercept;
   }
-  */
+  
   public void stop(){
     shootMotor.stopMotor();
   }
