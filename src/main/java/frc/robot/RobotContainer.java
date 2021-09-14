@@ -49,6 +49,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+
   private final Drivetrain mDrivetrain = new Drivetrain();
   private final Lift mLift = new Lift();
   private final AccumulatorIntake mAccumulatorIntake = new AccumulatorIntake();
@@ -100,13 +101,13 @@ public class RobotContainer {
         () -> xbox2.getBButton())
     );
 
-    /*
     mShooter.setDefaultCommand(
-      new OperateShooter(
+      new AutoOperateShooter(
         mShooter,
-        () -> xbox2.getPOV() * 1.0)
+        mLimelight,
+        () -> xbox2.getBumper(Hand.kRight),
+        () -> xbox2.getBumper(Hand.kLeft))
     );
-    */
 
     mTurret.setDefaultCommand(
       new AutoOperateTurret(

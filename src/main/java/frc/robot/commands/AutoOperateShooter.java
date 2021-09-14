@@ -9,16 +9,17 @@ import java.util.function.BooleanSupplier;
 public class AutoOperateShooter extends CommandBase {
   private final Shooter mShooter;
   private final Limelight mLimelight;
-  private final BooleanSupplier toggleShooter;
+  private final BooleanSupplier onShooter;
+  private final BooleanSupplier offShooter;
 
   private boolean shooterRunning = false;
-  private boolean buttonHeld = false;
   private double spdFromDist;
 
-  public AutoOperateShooter(Shooter _Shooter, Limelight _Limelight, BooleanSupplier _toggleShooter){
+  public AutoOperateShooter(Shooter _Shooter, Limelight _Limelight, BooleanSupplier _onShooter, BooleanSupplier _offShooter){
     mShooter = _Shooter;
     mLimelight = _Limelight;
-    toggleShooter = _toggleShooter;
+    onShooter = _onShooter;
+    offShooter = _offShooter;
     addRequirements(mShooter);
   }
 
@@ -32,6 +33,11 @@ public class AutoOperateShooter extends CommandBase {
       mShooter.stop();
     }
 
-    //Needs logic for toggling shooter motors off/on (using shoorterRunning bool)
+    if(onShooter.getAsBoolean()){
+      shooterRunning = true;
+    }
+    if(offShooter.getAsBoolean()){
+      shooterRunning = false;
+    }
   }
 }
