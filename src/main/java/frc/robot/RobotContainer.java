@@ -59,7 +59,7 @@ public class RobotContainer {
   private final Shooter mShooter = new Shooter();
   Turret mTurret = new Turret();
 
-  private final SimpleAuto m_autoCommand = new SimpleAuto(mDrivetrain);
+  SimpleAuto m_autoCommand = new SimpleAuto(mDrivetrain);
 
 
 
