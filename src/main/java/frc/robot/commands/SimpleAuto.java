@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class SimpleAuto extends CommandBase{
     private final Drivetrain mDrivetrain;
-    Timer m_timer;
+    Timer m_timer = new Timer();
 
     public SimpleAuto(Drivetrain _Drivetrain){
         mDrivetrain = _Drivetrain;
