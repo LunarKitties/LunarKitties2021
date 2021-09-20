@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
+
+  //commands
 import frc.robot.commands.DriveWithController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LiftBrakeOff;
@@ -26,6 +28,9 @@ import frc.robot.commands.RaiseAccum;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.WheelsShiftHigh;
 import frc.robot.commands.WheelsShiftLow;
+import frc.robot.commands.SimpleAuto;
+  
+  //subsystems
 import frc.robot.subsystems.AccumulatorIntake;
 import frc.robot.subsystems.AccumulatorJoint;
 import frc.robot.subsystems.Drivetrain;
@@ -54,7 +59,7 @@ public class RobotContainer {
   private final Shooter mShooter = new Shooter();
   Turret mTurret = new Turret();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final SimpleAuto m_autoCommand = new SimpleAuto(mDrivetrain);
 
 
 
