@@ -10,6 +10,10 @@ public class SimpleAuto extends CommandBase{
 
     public SimpleAuto(Drivetrain _Drivetrain){
         mDrivetrain = _Drivetrain;
+    }
+
+    @Override
+    public void initialize(){
         m_timer.reset();
         m_timer.start();
     }
