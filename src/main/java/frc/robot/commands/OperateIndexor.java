@@ -35,22 +35,23 @@ public class OperateIndexor extends CommandBase{
             targetEncDist = currEncDist + spacedEncDist;
             moveBall = true;
             currBall = false;
-          }
-          if(moveBall){
-            if(currEncDist < targetEncDist){
-              //run the intake belts
-              mIndexor.runBelts(-0.8);
-            }else{
-              moveBall = false;
-            }
+        }
+        if(moveBall){
+          if(currEncDist < targetEncDist){
+            //run the intake belts
+            mIndexor.runBelts(-0.8);
           }else{
-            mIndexor.stop();
+            moveBall = false;
           }
-          
-          if(mAButton.getAsBoolean()){
-            mIndexor.dumpBalls();
-          }else if(mBButton.getAsBoolean()){
-            mIndexor.unShoot();
-          }
+        }else{
+          mIndexor.stop();
+        }
+        
+        if(mAButton.getAsBoolean()){
+          mIndexor.dumpBalls();
+        }else if(mBButton.getAsBoolean()){
+          mIndexor.unShoot();
+        }
+        mIndexor.log();
     }
 }

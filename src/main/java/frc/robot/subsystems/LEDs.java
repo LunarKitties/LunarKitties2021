@@ -24,16 +24,9 @@ public static final double RED = 0.61;
 public static final double ORANGE = 0.65;
 public static final double GOLD_PATTERN = 0.41;
 public static final double LAWN_GREEN = 0.71;
-
-
-  public void initDefaultCommand() {
-      // Set the default command for a subsystem here.
-      //setDefaultCommand(new MySpecialCommand());
-    //setDefaultCommand(new MonitorLEDS());
-  }
   
-  public void setColor(double color)
-  {
-    ledDriver.set(color);
-  }
+public void setColor(double color)
+{
+  ledDriver.set(color);
+}
 }
