@@ -100,6 +100,7 @@ public class RobotContainer {
     mIndexor.setDefaultCommand(
       new OperateIndexor(
         mIndexor, 
+        mLEDs,
         () -> xbox2.getAButton(), 
         () -> xbox2.getBButton())
     );
