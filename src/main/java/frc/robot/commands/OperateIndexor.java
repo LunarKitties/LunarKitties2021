@@ -55,6 +55,8 @@ public class OperateIndexor extends CommandBase{
         }
         if(colorSeesBall){
           mLEDs.setColor(mLEDs.GOLD_PATTERN);
+        } else {
+          mLEDs.setColor(mLEDs.RAINBOW);
         }
 
         mIndexor.log();
