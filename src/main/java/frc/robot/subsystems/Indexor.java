@@ -46,8 +46,11 @@ public class Indexor extends SubsystemBase {
     indexMotor.set(ControlMode.PercentOutput, speed);
   }
 
-  public int indexEncoder(){
+  public int getEncoder(){
     return indexEnc.get();
+  }
+  public void resetEncoder(){
+    indexEnc.reset();
   }
 
   public void runPreShoot(double speed){
@@ -102,8 +105,7 @@ public class Indexor extends SubsystemBase {
   }
 
   public void log(){
-    SmartDashboard.putNumber("Index Encoder", indexEncoder());
-    //SmartDashboard.putBoolean("Index Ball Switch", ballHere());
+    SmartDashboard.putNumber("Index Encoder", getEncoder());
     SmartDashboard.putNumber("Red", getRed());
     SmartDashboard.putNumber("Blue", getBlue());
     SmartDashboard.putNumber("Green", getGreen());
