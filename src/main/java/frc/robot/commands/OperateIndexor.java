@@ -52,6 +52,8 @@ public class OperateIndexor extends CommandBase{
           mIndexor.dumpBalls();
         }else if(mBButton.getAsBoolean()){
           mIndexor.unShoot();
+        } else {
+          mIndexor.stop();
         }
         if(colorSeesBall){
           mLEDs.setColor(mLEDs.GOLD_PATTERN);
