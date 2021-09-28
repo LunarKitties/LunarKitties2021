@@ -21,10 +21,10 @@ public class DriveWithController extends CommandBase{
     @Override
     public void execute(){
         //Speed is based on the triggers. Left Trigger is reverse, Right Trigger is forward
-        double speed = mRightTrigger.getAsDouble() - mLeftTrigger.getAsDouble();
+        double speed = -mRightTrigger.getAsDouble() + mLeftTrigger.getAsDouble();
 
         //To Rotate you use the Right Joystick X Axis
-        double rotate = mRightStickX.getAsDouble();
+        double rotate = -mRightStickX.getAsDouble();
 
         //Drive the Robot
         mDrivetrain.drive(-speed,rotate);
