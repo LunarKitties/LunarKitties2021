@@ -21,8 +21,7 @@ import frc.robot.commands.LowerAccum;
 import frc.robot.commands.ManualOperateLauncher;
 import frc.robot.commands.OperateIndexor;
 import frc.robot.commands.OperateLift;
-import frc.robot.commands.AutoOperateShooter;
-import frc.robot.commands.AutoOperateTurret;
+import frc.robot.commands.AutoOperateLauncher;
 import frc.robot.commands.RaiseAccum;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.WheelsShiftHigh;
@@ -100,23 +99,6 @@ public class RobotContainer {
         () -> xbox2.getAButton(), 
         () -> xbox2.getBButton())
     );
-
-    mShooter.setDefaultCommand(
-      new AutoOperateShooter(
-        mShooter,
-        mLimelight,
-        () -> xbox2.getBumper(Hand.kRight),
-        () -> xbox2.getBumper(Hand.kLeft))
-    );
-
-    mTurret.setDefaultCommand(
-      new AutoOperateTurret(
-        mTurret,
-        mLimelight,
-        mNavX
-      )
-    );
-
   }
 
   /**
@@ -136,8 +118,8 @@ public class RobotContainer {
    new JoystickButton(xbox2, Button.kY.value).whenPressed(new RaiseAccum(mAccumulatorJoint));
    new JoystickButton(xbox2, Button.kX.value).whenPressed(new LowerAccum(mAccumulatorJoint));
       //Swapping to ManualOperateTurret
-   new JoystickButton(xbox2, Button.kStickRight.value).whenPressed(new ManualOperateLauncher(mTurret, mShooter, () -> xbox2.getX(Hand.kRight), () -> xbox2.getPOV() * 1.0));
-   new JoystickButton(xbox2, Button.kStickLeft.value).whenPressed(new AutoOperateTurret(mTurret, mLimelight, mNavX));
+   new JoystickButton(xbox2, Button.kStickRight.value).whenPressed(new ManualOperateLauncher(mTurret, mShooter, () -> xbox2.getX(Hand.kRight), () -> xbox2.getPOV() * 1.0, () -> xbox2.getStickButton(Hand.kLeft)));
+   new JoystickButton(xbox2, Button.kStickLeft.value).whenPressed(new AutoOperateLauncher(mShooter, mTurret, mNavX, mLimelight, () -> xbox2.getBumper(Hand.kRight), () -> xbox2.getBumper(Hand.kLeft), () -> xbox2.getStickButton(Hand.kRight)));
   }
 
 

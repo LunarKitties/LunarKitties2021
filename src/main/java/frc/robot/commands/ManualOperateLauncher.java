@@ -4,22 +4,25 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Shooter;
+
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 public class ManualOperateLauncher extends CommandBase {
     private final Turret mTurret;
     private final Shooter mShooter;
-
     private final DoubleSupplier rightStickX2;
     private final DoubleSupplier mdpad;
+    private final BooleanSupplier leftStickX2;
 
     double speed;
 
-    public ManualOperateLauncher(Turret _Turret, Shooter _Shooter, DoubleSupplier _rightStickX2, DoubleSupplier _dpad) {
+    public ManualOperateLauncher(Turret _Turret, Shooter _Shooter, DoubleSupplier _rightStickX2, DoubleSupplier _dpad, BooleanSupplier _LeftStickX2) {
       mTurret = _Turret;
       mShooter = _Shooter;
       rightStickX2 = _rightStickX2;
       mdpad = _dpad;
+      leftStickX2 = _LeftStickX2;
     }
 
     @Override
@@ -45,5 +48,10 @@ public class ManualOperateLauncher extends CommandBase {
     }
 
     mTurret.log(speed);
+  }
+
+  @Override
+  public boolean isFinished(){
+    return leftStickX2.getAsBoolean();
   }
 }
