@@ -64,7 +64,7 @@ public class RobotContainer {
   private final NavX mNavX = new NavX();
   private final Turret mTurret = new Turret();
 
-  SimpleAuto m_autoCommand = new SimpleAuto(mDrivetrain);
+  SimpleAuto m_autoCommand = new SimpleAuto(mDrivetrain, mTurret, mShooter, mIndexor, mLimelight, mNavX);
 
   public XboxController xbox1 = new XboxController(0);
   public XboxController xbox2 = new XboxController(1);

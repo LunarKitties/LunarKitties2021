@@ -1,43 +1,39 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
+
+import frc.robot.commands.ControlLauncher;
+
+import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Drivetrain;
-import edu.wpi.first.wpilibj.Timer;
+import frc.robot.subsystems.Indexor;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.NavX;
+import frc.robot.subsystems.Shooter;
 
-public class SimpleAuto extends CommandBase{
+public class SimpleAuto extends CommandGroupBase{
+
     private final Drivetrain mDrivetrain;
-    Timer m_timer = new Timer();
+    private final Shooter mShooter;
+    private final Turret mTurret;
+    private final Indexor mIndexor;
+    private final Limelight mLimelight;
+    private final NavX mNavX;
 
-    public SimpleAuto(Drivetrain _Drivetrain){
+    public SimpleAuto(Drivetrain _Drivetrain, Turret _Turret, Shooter _Shooter, Indexor _Indexor, Limelight _Limelight, NavX _NavX){
         mDrivetrain = _Drivetrain;
-    }
-
-    @Override
-    public void initialize(){
-        m_timer.reset();
-        m_timer.start();
-    }
-
-    @Override
-    public void execute(){
-
-        if(m_timer.get() < 1.0){
-            mDrivetrain.drive(-.2,0);
-        }else{
-            mDrivetrain.stop();
-            end(true);
-        }
-    }
-  
-    // Called once the command ends or is interrupted.
-    @Override
-    public void end(boolean interrupted) {
-    }
-  
-    // Returns true when the command should end.
-    @Override
-    public boolean isFinished() {
-      return false;
+        mTurret = _Turret;
+        mShooter = _Shooter;
+        mIndexor = _Indexor;
+        mLimelight = _Limelight;
+        mNavX = _NavX;
     }
     
+    @Override
+    public void addCommands(Command... commands) {
+        sequence(
+                new ControlLauncher(mTurret, mShooter, 100)
+            );
+    }
 }
