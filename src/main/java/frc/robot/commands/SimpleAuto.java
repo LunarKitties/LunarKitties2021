@@ -1,9 +1,8 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandGroupBase;
-
-import frc.robot.commands.ControlLauncher;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Drivetrain;
@@ -12,7 +11,7 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Shooter;
 
-public class SimpleAuto extends CommandGroupBase{
+public class SimpleAuto extends SequentialCommandGroup{
 
     private final Drivetrain mDrivetrain;
     private final Shooter mShooter;
@@ -28,12 +27,10 @@ public class SimpleAuto extends CommandGroupBase{
         mIndexor = _Indexor;
         mLimelight = _Limelight;
         mNavX = _NavX;
-    }
-    
-    @Override
-    public void addCommands(Command... commands) {
-        sequence(
-                new ControlLauncher(mTurret, mShooter, 100)
-            );
+
+        addCommands(
+            new DriveWithCommands(mDrivetrain, 0.5, 0, 3),
+            new ControlLauncher(mTurret, mShooter, 100)
+        );
     }
 }

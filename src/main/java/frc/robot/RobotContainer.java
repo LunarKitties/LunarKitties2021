@@ -42,6 +42,8 @@ import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.NavX;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -133,7 +135,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public SequentialCommandGroup getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
