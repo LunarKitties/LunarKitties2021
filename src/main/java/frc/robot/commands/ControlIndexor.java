@@ -23,7 +23,7 @@ public class ControlIndexor extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        if(time > timer.get()){
+        if(timer.get() > time){
             mIndexor.stop();
             return true;
         }

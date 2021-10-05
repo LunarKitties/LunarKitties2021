@@ -29,7 +29,7 @@ public class DriveWithCommands extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        if(time > timer.get()){
+        if(timer.get() > time){
             mDrivetrain.stop();
             return true;
         }
