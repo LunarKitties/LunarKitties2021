@@ -17,6 +17,7 @@ public class DriveWithCommands extends CommandBase{
         speed = _speed;
         rotate = _rotate;        
         time = _time; //in seconds
+        timer = new Timer();
         timer.start();
     }
 

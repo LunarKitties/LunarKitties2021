@@ -12,6 +12,7 @@ public class ControlIndexor extends CommandBase{
     public ControlIndexor(Indexor _Indexor, double _time){
         mIndexor = _Indexor;
         time = _time;
+        timer = new Timer();
         timer.start();
     }
 
