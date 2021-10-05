@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.Compressor;
 
 /**
@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.Compressor;
  * project.
  */
 public class Robot extends TimedRobot {
-  private CommandGroupBase m_autonomousCommand;
+  private SequentialCommandGroup m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
   private Compressor comp;

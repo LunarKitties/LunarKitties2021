@@ -9,16 +9,17 @@ public class ControlLauncher extends CommandBase {
     private final Turret mTurret;
     private final Shooter mShooter;
     private final int turretEnc;
+    private final int shooterSpeed;
 
     int encRange = 30;
     double speed = 0.5;
     boolean done = false;
 
-    public ControlLauncher(Turret _Turret, Shooter _Shooter, int _turretEnc) {
+    public ControlLauncher(Turret _Turret, Shooter _Shooter, int _turretEnc, int _shooterSpeed) {
       mTurret = _Turret;
       mShooter = _Shooter;
       turretEnc = _turretEnc;
-      //shooterSpeed = _shooterSpeed;
+      shooterSpeed = _shooterSpeed;
     }
 
     @Override
@@ -31,7 +32,8 @@ public class ControlLauncher extends CommandBase {
       mTurret.run(speed);
       done = true;
     }
-    mShooter.setSpeed(-4200);
+    mShooter.setSpeed(shooterSpeed);
+    //mShooter.setSpeed(-4200);
   }
 
   @Override

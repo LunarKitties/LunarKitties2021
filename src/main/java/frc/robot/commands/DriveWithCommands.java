@@ -24,14 +24,15 @@ public class DriveWithCommands extends CommandBase{
     public void execute(){
         //Drive the Robot
         mDrivetrain.drive(speed,rotate);
-        if(time > timer.get()){
-            done = true;
-        }
     }
 
     @Override
     public boolean isFinished() {
-        return done;
+        if(time > timer.get()){
+            mDrivetrain.stop();
+            return true;
+        }
+        return false;
     }
     
 }
