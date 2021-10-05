@@ -39,6 +39,7 @@ public class Robot extends TimedRobot {
 
     comp = new Compressor(0);
     comp.setClosedLoopControl(true);
+    CommandScheduler.getInstance().enable();
   }
 
   /**
@@ -62,6 +63,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    CommandScheduler.getInstance().cancelAll();
+    CommandScheduler.getInstance().disable();
   }
 
   @Override
