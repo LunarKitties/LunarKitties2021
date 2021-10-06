@@ -30,7 +30,7 @@ public class SimpleAuto extends SequentialCommandGroup{
 
         addCommands(
             new DriveWithCommands(mDrivetrain, 0.5, 0, 3),
-            new ControlLauncher(mTurret, mShooter, 100, -4200),
+            new ControlLauncher(mTurret, mShooter, 500, -4200),
             new ControlIndexor(mIndexor, 2)
         );
     }

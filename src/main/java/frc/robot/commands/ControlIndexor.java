@@ -13,6 +13,12 @@ public class ControlIndexor extends CommandBase{
         mIndexor = _Indexor;
         time = _time;
         timer = new Timer();
+    
+    }
+
+    @Override
+    public void initialize(){
+        timer.reset();
         timer.start();
     }
 

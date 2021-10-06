@@ -18,6 +18,11 @@ public class DriveWithCommands extends CommandBase{
         rotate = _rotate;        
         time = _time; //in seconds
         timer = new Timer();
+    }
+
+    @Override
+    public void initialize(){
+        timer.reset();
         timer.start();
     }
 
