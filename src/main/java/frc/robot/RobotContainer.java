@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
+
+  //commands
 import frc.robot.commands.DriveWithController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LiftBrakeOff;
@@ -26,6 +28,9 @@ import frc.robot.commands.RaiseAccum;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.WheelsShiftHigh;
 import frc.robot.commands.WheelsShiftLow;
+import frc.robot.commands.SimpleAuto;
+  
+  //subsystems
 import frc.robot.subsystems.AccumulatorIntake;
 import frc.robot.subsystems.AccumulatorJoint;
 import frc.robot.subsystems.Drivetrain;
@@ -37,6 +42,8 @@ import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.NavX;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -59,7 +66,7 @@ public class RobotContainer {
   private final NavX mNavX = new NavX();
   private final Turret mTurret = new Turret();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  SimpleAuto m_autoCommand = new SimpleAuto(mDrivetrain, mTurret, mShooter, mIndexor, mLimelight, mNavX);
 
   public XboxController xbox1 = new XboxController(0);
   public XboxController xbox2 = new XboxController(1);
@@ -128,7 +135,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public SequentialCommandGroup getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }

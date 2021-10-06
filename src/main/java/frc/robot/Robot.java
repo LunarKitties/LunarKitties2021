@@ -10,8 +10,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.Compressor;
 
 /**
@@ -21,7 +22,7 @@ import edu.wpi.first.wpilibj.Compressor;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
+  private SequentialCommandGroup m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
   private Compressor comp;
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
 
     comp = new Compressor(0);
     comp.setClosedLoopControl(true);
+    CommandScheduler.getInstance().enable();
   }
 
   /**
@@ -61,6 +63,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    CommandScheduler.getInstance().cancelAll();
   }
 
   @Override
@@ -85,6 +88,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
   }
 
   @Override
