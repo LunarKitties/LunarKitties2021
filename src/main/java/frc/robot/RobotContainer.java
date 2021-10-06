@@ -46,6 +46,8 @@ import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
+import frc.robot.subsystems.LEDs;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -57,6 +59,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final Drivetrain mDrivetrain = new Drivetrain();
+  private final LEDs mLEDs = new LEDs();
   private final Lift mLift = new Lift();
   private final AccumulatorIntake mAccumulatorIntake = new AccumulatorIntake();
   private final AccumulatorJoint mAccumulatorJoint = new AccumulatorJoint();
@@ -103,6 +106,7 @@ public class RobotContainer {
     mIndexor.setDefaultCommand(
       new OperateIndexor(
         mIndexor, 
+        mLEDs,
         () -> xbox2.getAButton(), 
         () -> xbox2.getBButton())
     );
@@ -116,11 +120,11 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
       //Shifting to low or high gear
-   new JoystickButton(xbox1, Button.kBumperRight.value).whenPressed(new WheelsShiftHigh(mDrivetrain));
-   new JoystickButton(xbox1, Button.kBumperLeft.value).whenPressed(new WheelsShiftLow(mDrivetrain));
+   new JoystickButton(xbox1, Button.kBumperRight.value).whenPressed(new WheelsShiftHigh(mDrivetrain, mLEDs));
+   new JoystickButton(xbox1, Button.kBumperLeft.value).whenPressed(new WheelsShiftLow(mDrivetrain, mLEDs));
       //Locking the lift in its current position
-   new JoystickButton(xbox1, Button.kY.value).whenPressed(new LiftBrakeOn(mLift));
-   new JoystickButton(xbox1, Button.kX.value).whenPressed(new LiftBrakeOff(mLift));
+   new JoystickButton(xbox1, Button.kY.value).whenPressed(new LiftBrakeOn(mLift, mLEDs));
+   new JoystickButton(xbox1, Button.kX.value).whenPressed(new LiftBrakeOff(mLift, mLEDs));
       //Lowering/Raising Accumulator
    new JoystickButton(xbox2, Button.kY.value).whenPressed(new RaiseAccum(mAccumulatorJoint));
    new JoystickButton(xbox2, Button.kX.value).whenPressed(new LowerAccum(mAccumulatorJoint));
